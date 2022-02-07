@@ -13,7 +13,7 @@ const Rightbar = ({user}) => {
     const fetchFollowings = async () => {
       console.log(user.user)
       await user.user.followings.map( async u => {
-        const res = await axios.get("http://localhost:8800/api/users/"+u)
+        const res = await axios.get("/api/users/"+u)
         userFriends.push(res.data)
         userFriends.map( u => { 
           var profileUrl = "/profile/" + u._id
