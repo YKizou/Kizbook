@@ -9,7 +9,7 @@ function Post({post}) {
   const [isLiked, setIsLiked] = useState(false)
   const [users, setUsers] = useState({})
   const PF = process.env.REACT_APP_PUBLIC_FOLDER
-  const PageProfile = "http://localhost:3000/profile/" + post.userId
+  const PageProfile = "/profile/" + post.userId
   const {user} = useContext(AuthContext)
 
   // const {username} = useParams()
@@ -20,7 +20,7 @@ function Post({post}) {
 
   useEffect(()=>{
     const fetchUser = async () => {
-      const res = await axios.get("http://localhost:8800/api/users/"+post.userId)
+      const res = await axios.get("/api/users/"+post.userId)
       setUsers(res.data)
     };
     fetchUser()
@@ -28,7 +28,7 @@ function Post({post}) {
 
   const handleLike = async () => {
     try {
-      await axios.put("http://localhost:8800/api/posts/"+post._id+"/like", {userId: user._id})
+      await axios.put("/api/posts/"+post._id+"/like", {userId: user._id})
     }catch(err){}
     isLiked ? setLike(like-1) : setLike(like+1);
     setIsLiked(!isLiked);

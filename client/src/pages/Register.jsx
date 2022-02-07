@@ -26,7 +26,7 @@ const Register = () => {
         password: password.current.value,
       }
       try{
-        await axios.post("http://localhost:8800/api/auth/signup", user)
+        await axios.post("/api/auth/signup", user)
         history("/")
       } catch(err){
         console.log(err)

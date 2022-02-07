@@ -17,7 +17,7 @@ const postRoute = require("./routes/posts")
 const port = process.env.PORT || 8800
 
 app.use(cors({
-  origin: 'http://localhost:3000'
+  origin: '/'
 }));
 
 dotenv.config();
