@@ -1,6 +1,5 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 
 
 const RightbarProfile = ({user}) => {
@@ -14,32 +13,25 @@ const RightbarProfile = ({user}) => {
   
 
   useEffect(()=>{
-    // const fetchFollowings = async () => {
-    //   await user.followings.map( async u => {
-    //     const res = await axios.get("http://localhost:8800/api/users/"+u)
-    //     userFriends.push(res.data)
-    //     userFriends.map( u => { 
-    //       var profileUrl = "/profile/" + u._id
-    //       setListFriends(oldArray=>[...oldArray,
-    //       <div key={u._id} className="flex flex-col pt-3">
-    //       <a href={profileUrl}><img src={PF+ u.profilePicture} alt="" className="topbarImg cursor-pointer h-28 w-28 rounded object-cover"/></a>
-    //       <code className="font-bold text-sm">{u.username}</code>
-    //       </div>
-    //     ]) 
-    //     })
-    //   })
-    // };
-    // fetchFollowings()
+    const fetchFollowings = async () => {
+      console.log("test", user.followings)
+      await user.followings.map( async u => {
+        const res = await axios.get("/api/users/"+u)
+        userFriends.push(res.data)
+        userFriends.map( u => { 
+          var profileUrl = "/profile/" + u._id
+          setListFriends(oldArray=>[...oldArray,
+          <div key={u._id} className="flex flex-col pt-3">
+          <a href={profileUrl}><img src={PF+ u.profilePicture} alt="" className="topbarImg cursor-pointer h-28 w-28 rounded object-cover"/></a>
+          <code className="font-bold text-sm">{u.username}</code>
+          </div>
+        ]) 
+        })
+      })
+    };
+    fetchFollowings()
   }, [user])
 
-  // const fetchUserFriends = () => {
-  //    userFriends.map( u => { 
-      // <div key={u._id} className="flex flex-col pt-3">
-      //   <img src={PF+ u.profilePicture} alt="" className="topbarImg cursor-pointer h-28 w-28 rounded object-cover"/>
-      //   <code className="font-bold text-sm">{u.username}</code>
-      // </div> 
-  //   })
-  // };
 
   return (
     <div className='rightbarProfile pt-5 w-1/4 overflow-y-scroll pl-2'>

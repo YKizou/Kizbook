@@ -6,6 +6,7 @@ const INITIAL_STATE = {
     _id:"61ca4100ee1f904579382044",
     username:"youssefkizou",
     email:"youssefkizou@gmail.com",
+    followings: ["61ca412eee1f904579382048", "61ca4119ee1f904579382046"],
     password: "$2b$10$NUmgo2bqW02cRQb1SeGki.6j5O4wtr9BCllPo9ff32WzqWjSoa4w.",
     profilePicture:"person/kizou.jpeg",
     city:"evry",

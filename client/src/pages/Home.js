@@ -13,7 +13,7 @@ const Home = () => {
     <div className='flex justify-between px-5'>
       <Sidebar/>
       <Feed/>
-      <Rightbar/>
+      <Rightbar user={user}/>
     </div>
     
     </>
