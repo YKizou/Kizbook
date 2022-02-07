@@ -7,12 +7,12 @@ const Topbar = () => {
 
   const {user} = useContext(AuthContext)
   const PF = process.env.REACT_APP_PUBLIC_FOLDER
-  const urlProfile = "http://localhost:3000/profile/"+user._id
+  const urlProfile = "/profile/"+user._id
 
   return (
     <div className='topbarContainer bg-[#262526] text-sky-50 w-full h-14 flex flex-row items-center px-5 sticky top-0 z-10'>
       <div className="topbarLeft w-1/4">
-        <a href="http://kizou.org">
+        <a href="/">
           <span className="logotext-2xl font-bold"><code>Kizbook</code></span>
         </a>
       </div>
