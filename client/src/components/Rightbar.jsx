@@ -6,7 +6,7 @@ const Rightbar = ({user}) => {
   const [listFriends, setListFriends]  = useState([])
   var userFriends = []
   const PB_ADS = PF + "ad.png"
-  const PB_GIFT = PF + "gift.png"
+  // const PB_GIFT = PF + "gift.png"
 
 
   useEffect(()=>{
@@ -32,10 +32,10 @@ const Rightbar = ({user}) => {
 
   return (
     <div className='rightbar pt-5 w-1/4 overflow-y-scroll px-2'>
-      <div className='rightbarBirthday flex pb-7'>
+      {/* <div className='rightbarBirthday flex pb-7'>
         <img src={PB_GIFT} alt="" className="rightbarBirthdayImg cursor-pointer h-12 w-12"/>
         <code className="ml-4"><b>Youssef Kizou</b> and <b>3 other friends</b> have a birthday today.</code>
-      </div>
+      </div> */}
       <img src={PB_ADS} alt="" className="rightbarAd rounded-2xl" />
       <div className="rightbarFriends pt-7">
         <div className="userFriends">
