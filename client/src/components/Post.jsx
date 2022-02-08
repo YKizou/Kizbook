@@ -62,12 +62,12 @@ function Post({post}) {
           
           <code className='text-sm cursor-pointer'>{like} people like it.</code>
         </div>
-        { post.comment === 1 || post.comment === 0 ? 
+        {/* { post.comment === 1 || post.comment === 0 ? 
           <code className='text-gray-600 text-sm cursor-pointer'>
             {post.comment} comment</code> : 
           <code className='text-gray-600 text-sm cursor-pointer'>
             {post.comment} comments
-          </code>}
+          </code>} */}
 
       </div>
     </div>
