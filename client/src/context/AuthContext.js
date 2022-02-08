@@ -10,7 +10,7 @@ const INITIAL_STATE = {
     password: "$2b$10$NUmgo2bqW02cRQb1SeGki.6j5O4wtr9BCllPo9ff32WzqWjSoa4w.",
     profilePicture:"person/kizou.jpeg",
     city:"evry",
-    desc:"hello it's me"
+    desc:"Hello! My name is Youssef. Born and raised in Morocco, I now live in Paris. I am always curious and willing to learn new things."
 }
   ,
   isFetching: false,
