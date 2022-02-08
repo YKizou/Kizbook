@@ -48,10 +48,10 @@ const Share = () => {
         <ul className="shareIcons pt-3 flex">
           <label htmlFor="file" className="shareIconList mr-7">
             <PermMedia className="text-red-400"/>
-            <code className='ml-1 cursor-pointer'>Photo or video</code>
+            <code className='ml-1 cursor-pointer'>Share a photo</code>
             <input className="hidden" type="file" id="file" accept=".png,.jpeg,.jpg" onChange={(e)=>setFile(e.target.files[0])}/>
           </label>
-          <li className="shareIcon mr-7">
+          {/* <li className="shareIcon mr-7">
             <LocalOffer className="text-blue-400"/>
             <code className='ml-1 '>Tag</code>
           </li>
@@ -62,7 +62,7 @@ const Share = () => {
           <li className="shareIcon mr-7">
             <EmojiEmotions className="text-yellow-400"/>
             <code className='ml-1'>Feelings</code>
-          </li>
+          </li> */}
         </ul>
         <button className="shareButton bg-green-600 rounded text-white p-1 px-2">Share</button>
       </div>
