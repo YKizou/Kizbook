@@ -32,7 +32,10 @@ const Login = () => {
         <div className="loginLeft flex flex-col w-1/2 pr-10">
             <div className="divForDesignOnly h-2/6"></div>
             <code className="loginLogo text-4xl font-bold">KizBook</code>
-            <code className="loginDesc text-2xl">Connect with friends and the world around you on Kizbook.</code>
+            <code className="loginDesc text-2xl">You can create a new account or use the account below to test the application :</code>
+            <br/>
+            <code className="loginDesc text-2xl"><b>Email</b> : youssefkizou@gmail.com</code>
+            <code className="loginDesc text-2xl"><b>Password</b> : test123</code>
         </div>
         <form className="loginRight flex flex-col w-1/2 justify-center align-center bg-white" onSubmit={handleSubmit}>
             <input type="email" className="emailInput h-1/6 p-3 m-3 border-2 border-gray-400 rounded-2xl" placeholder="Email" required ref={email} />
