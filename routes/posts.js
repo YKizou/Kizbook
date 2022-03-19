@@ -32,7 +32,7 @@ router.put('/:id', async (req,res) => {
 router.delete('/:id', async (req,res) => {
   try {
     const post = await Post.findOne({_id:req.params.id})
-    if (post.userId === req.body.userId) {
+    if (post.userId === req.body._id) {
       await Post.deleteOne({_id:req.params.id})
       res.status(200).json('post deleted')
     } else {

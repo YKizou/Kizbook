@@ -57,7 +57,7 @@ function Post({ post }) {
           </a>
           <code className="text-xs">{post.createdAt}</code>
         </div>
-        <PostMenu />
+        <PostMenu post={post}/>
       </div>
       <div className="postContent flex flex-col space-y-5">
         <code className="">{post.desc}</code>
