@@ -8,7 +8,7 @@ function Post({post}) {
   const [like, setLike] = useState(post.likes.length)
   const [isLiked, setIsLiked] = useState(false)
   const [users, setUsers] = useState({})
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER
+  const PF = "/images/"
   const PageProfile = "/profile/" + post.userId
   const {user} = useContext(AuthContext)
 

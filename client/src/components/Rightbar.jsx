@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
 const Rightbar = ({user}) => {
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER
+  const PF = "/images/"
   const [listFriends, setListFriends]  = useState([])
   var userFriends = []
   const PB_ADS = PF + "ad.png"

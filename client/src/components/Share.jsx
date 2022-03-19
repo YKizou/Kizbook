@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { AuthContext } from '../context/AuthContext'
 
 const Share = () => {
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER
+  const PF = "/images/"
   const {user} = useContext(AuthContext)
   const descRef = useRef()
   const [file, setFile] = useState(null)
