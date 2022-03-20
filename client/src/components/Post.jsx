@@ -10,7 +10,7 @@ function Post({ post }) {
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [users, setUsers] = useState({});
-  const PF = "/images/";
+  const PF = "https://kizbook-imgs.s3.eu-west-1.amazonaws.com";
   const PageProfile = "/profile/" + post.userId;
   const { user } = useContext(AuthContext);
 
@@ -61,7 +61,7 @@ function Post({ post }) {
       </div>
       <div className="postContent flex flex-col space-y-5">
         <code className="">{post.desc}</code>
-        <img src={PF + post.img} alt="" className="" />
+        <img src={ PF + "/" + post.img} alt="" className="" />
       </div>
       <div className="postFooter flex justify-between">
         <div className="postFooterLikes space-x-3 ml-2">

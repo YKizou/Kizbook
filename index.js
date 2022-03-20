@@ -7,8 +7,23 @@ const morgan = require("morgan")
 const cors = require("cors")
 const multer = require("multer")
 const path = require("path")
+const aws = require('aws-sdk');
+const multerS3 = require('multer-s3');
+const bodyParser = require('body-parser')
 
+dotenv.config();
 
+app.use(cors({
+  origin: '/'
+}));
+
+aws.config.update({
+  secretAccessKey: process.env.SECRETACCESSKEY,
+  accessKeyId: process.env.ACCESSKEYID,
+  region: process.env.REGION
+});
+
+s3 = new aws.S3();
 
 const userRoute = require("./routes/users")
 const authRoute = require("./routes/auth")
@@ -16,44 +31,51 @@ const postRoute = require("./routes/posts")
 
 const port = process.env.PORT || 8800
 
-app.use(cors({
-  origin: '/'
-}));
-
-dotenv.config();
 
 mongoose.connect(process.env.MONGO_URL, () =>{
    console.log("connected to MongoDB")
 });
 
 // if you use the /images path, don't make any request, instead go to the directory below
-app.use("/images", express.static(path.join(__dirname, "public/images")))
+// app.use("/images", express.static(path.join(__dirname, "public/images")))
 app.use(express.static(path.join(__dirname, "client", "build")))
 
 
 //middleware
 app.use(express.json());
 app.use(helmet());
-
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+      "img-src": ["'self'", "kizbook-imgs.s3.eu-west-1.amazonaws.com"],
+    },
+  })
+);
+app.use(bodyParser.json());
 app.use(morgan("common"));
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "./public/images");
-  },
-  filename: (req, file, cb)=> {
-    cb(null, req.body.name);
-  }
-})
+const upload = multer({
+  storage: multerS3({
+      s3: s3,
+      bucket: 'kizbook-imgs',
+      key: function (req, file, cb) {
+        console.log(file),
+          cb(null, req.body.name); //use Date.now() for unique file keys
+      },
+  })
+});;
 
-const upload = multer({storage});
-app.post("/api/upload", upload.single("file"), (req, res)=>{
+
+app.post("/api/upload", upload.array("file"), (req, res)=>{
   try{
     return res.status(200).json("File uploaded successfully.")
   }catch(err){
     console.log(err)
   }
 })
+
+
 
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
