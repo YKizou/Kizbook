@@ -10,7 +10,7 @@ function Post({ post }) {
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [users, setUsers] = useState({});
-  const PF = "/images/";
+  const PF = "https://kizbook-imgs.s3.eu-west-1.amazonaws.com/";
   const PageProfile = "/profile/" + post.userId;
   const { user } = useContext(AuthContext);
 
