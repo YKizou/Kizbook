@@ -7,9 +7,9 @@ const Rightbar = ({ user }) => {
   const PB_ADS = PF + "ad.png";
 
   useEffect(() => {
-    if (user._id) {
+    if (user.user._id) {
       (async () => {
-        const res = await axios.get("/api/users/all/" + user._id);
+        const res = await axios.get("/api/users/all/" + user.user._id);
         res.data.map((e) => {
           var profileUrl = "/profile/" + e._id;
           setListUsers((oldArray) => [

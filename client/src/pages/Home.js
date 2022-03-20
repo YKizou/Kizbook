@@ -6,7 +6,6 @@ import Topbar from '../components/Topbar'
 import { AuthContext } from '../context/AuthContext'
 const Home = () => {
   const user = useContext(AuthContext)
-  console.log("Welcome", user)
   return (
     <>
     <Topbar/>
