@@ -47,6 +47,7 @@ app.use(helmet());
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
+      ...helmet.contentSecurityPolicy.getDefaultDirectives(),
       "img-src": ["'self'", "s3.amazonaws.com"],
     },
   })
