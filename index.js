@@ -7,8 +7,17 @@ const morgan = require("morgan")
 const cors = require("cors")
 const multer = require("multer")
 const path = require("path")
+const aws = require('aws-sdk');
+const multerS3 = require('multer-s3');
+const bodyParser = require('body-parser')
 
+aws.config.update({
+  secretAccessKey: process.env.SECRETACCESSKEY,
+  accessKeyId: process.env.ACCESSKEYID,
+  region: process.env.REGION
+});
 
+s3 = new aws.S3();
 
 const userRoute = require("./routes/users")
 const authRoute = require("./routes/auth")
@@ -34,26 +43,30 @@ app.use(express.static(path.join(__dirname, "client", "build")))
 //middleware
 app.use(express.json());
 app.use(helmet());
-
+app.use(bodyParser.json());
 app.use(morgan("common"));
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "./public/images");
-  },
-  filename: (req, file, cb)=> {
-    cb(null, req.body.name);
-  }
-})
+const upload = multer({
+  storage: multerS3({
+      s3: s3,
+      bucket: 'kizbook-imgs',
+      key: function (req, file, cb) {
+          cb(null, req.body.name); //use Date.now() for unique file keys
+      },
+  })
+});;
 
-const upload = multer({storage});
-app.post("/api/upload", upload.single("file"), (req, res)=>{
+
+app.post("/api/upload", upload.array("file"), (req, res)=>{
+
   try{
     return res.status(200).json("File uploaded successfully.")
   }catch(err){
     console.log(err)
   }
 })
+
+
 
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);

@@ -8,7 +8,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 const Profile = () => {
-  const PF = "/images/";
+  const PF = "https://kizbook-imgs.s3.eu-west-1.amazonaws.com";
   const { username } = useParams();
   const [user, setUser] = useState({});
 

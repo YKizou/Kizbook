@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { AuthContext } from '../context/AuthContext'
 
 const Share = () => {
-  const PF = "/images/"
+  const PF = "https://kizbook-imgs.s3.eu-west-1.amazonaws.com"
   const {user} = useContext(AuthContext)
   const descRef = useRef()
   const [file, setFile] = useState(null)
@@ -18,7 +18,7 @@ const Share = () => {
     }
     if(file){
       const data = new FormData();
-      const fileName = Date.now() + file.name;
+      const fileName = "post/" + Date.now() + file.name;
       data.append("name", fileName )
       data.append("file", file)
       newPost.img = fileName;
@@ -52,18 +52,6 @@ const Share = () => {
               <code className='ml-1 cursor-pointer'>Photo</code>
               <input className="hidden" type="file" id="file" accept=".png,.jpeg,.jpg" onChange={(e)=>setFile(e.target.files[0])}/>
             </label>
-            {/* <li className="shareIcon mr-7">
-              <LocalOffer className="text-blue-400"/>
-              <code className='ml-1 '>Tag</code>
-            </li>
-            <li className="shareIcon mr-7">
-              <LocationOn className="text-green-400"/>
-              <code className='ml-1'>Location</code>
-            </li>
-            <li className="shareIcon mr-7">
-              <EmojiEmotions className="text-yellow-400"/>
-              <code className='ml-1'>Feelings</code>
-            </li> */}
           </ul>
           <button className="shareButton bg-green-600 rounded text-white p-1 px-2">Share</button>
         </div>

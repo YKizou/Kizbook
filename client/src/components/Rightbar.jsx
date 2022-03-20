@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 const Rightbar = ({ user }) => {
-  const PF = "/images/";
+  const PF = "https://kizbook-imgs.s3.eu-west-1.amazonaws.com";
   const [listUsers, setListUsers] = useState([]);
   const PB_ADS = PF + "ad.png";
 
