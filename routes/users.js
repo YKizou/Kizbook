@@ -51,6 +51,19 @@ router.get("/:id", async(req, res)=>{
   
 });
 
+// get all users
+router.get("/all/:id", async(req, res)=>{
+  try{
+    const users = await User.find();
+    const filtered = users.filter(function(el) { return el._id != req.params.id; }); 
+
+    res.status(200).json(filtered);
+  }catch(err){
+    res.status(500).json(err)
+  } 
+  
+});
+
 // follow a user 
 router.put("/:id/follow", async(req, res)=>{
   if(req.params.id !== req.body.userId) {

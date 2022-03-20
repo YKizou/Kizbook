@@ -3,30 +3,30 @@ import React, { useEffect, useState } from "react";
 
 const RightbarProfile = ({ user }) => {
   const PF = "/images/";
-
-  const [listFriends, setListFriends] = useState([]);
+  const [listUsers, setListUsers] = useState([]);
 
   useEffect(() => {
-    const fetchFollowings = async () => {
-      await user.followings.map(async (u) => {
-        const res = await axios.get("/api/users/" + u);
-        var profileUrl = "/profile/" + res.data._id;
-        setListFriends((oldArray) => [
-          ...oldArray,
-          <div key={res.data._id} className="flex flex-col pt-3">
-            <a href={profileUrl}>
-              <img
-                src={PF + res.data.profilePicture}
-                alt=""
-                className="topbarImg cursor-pointer h-28 w-28 rounded object-cover"
-              />
-            </a>
-            <code className="font-bold text-sm">{res.data.username}</code>
-          </div>,
-        ]);
-      });
-    };
-    fetchFollowings();
+    if (user._id) {
+      (async () => {
+        const res = await axios.get("/api/users/all/" + user._id);
+        res.data.map((e) => {
+          var profileUrl = "/profile/" + e._id;
+          setListUsers((oldArray) => [
+            ...oldArray,
+            <div key={e._id} className="flex flex-col pt-3">
+              <a href={profileUrl}>
+                <img
+                  src={PF + e.profilePicture}
+                  alt=""
+                  className="topbarImg cursor-pointer h-28 w-28 rounded object-cover"
+                />
+              </a>
+              <code className="font-bold text-sm">{e.username}</code>
+            </div>,
+          ]);
+        });
+      })();
+    }
   }, [user]);
 
   return (
@@ -38,9 +38,9 @@ const RightbarProfile = ({ user }) => {
       </div>
 
       <div className="userFriends">
-        <code className="userFriends font-bold">User Friends</code>
+        <code className="userFriends font-bold">Other users :</code>
         <div className="listuserFriends grid grid-cols-2">
-          {listFriends ? listFriends : null}
+          {listUsers ? listUsers : null}
         </div>
       </div>
     </div>

@@ -34,6 +34,7 @@ app.use(express.static(path.join(__dirname, "client", "build")))
 //middleware
 app.use(express.json());
 app.use(helmet());
+
 app.use(morgan("common"));
 
 const storage = multer.diskStorage({
