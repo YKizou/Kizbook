@@ -61,7 +61,7 @@ function Post({ post }) {
       </div>
       <div className="postContent flex flex-col space-y-5">
         <code className="">{post.desc}</code>
-        <img src={PF + post.img} alt="" className="" />
+        <img src={ PF + "/" + post.img} alt="" className="" />
       </div>
       <div className="postFooter flex justify-between">
         <div className="postFooterLikes space-x-3 ml-2">

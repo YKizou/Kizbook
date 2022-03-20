@@ -12,9 +12,9 @@ const multerS3 = require('multer-s3');
 const bodyParser = require('body-parser')
 
 aws.config.update({
-  secretAccessKey: process.env.SECRETACCESSKEY,
-  accessKeyId: process.env.ACCESSKEYID,
-  region: process.env.REGION
+  secretAccessKey: SECRETACCESSKEY,
+  accessKeyId: ACCESSKEYID,
+  region: REGION
 });
 
 s3 = new aws.S3();
@@ -36,7 +36,7 @@ mongoose.connect(process.env.MONGO_URL, () =>{
 });
 
 // if you use the /images path, don't make any request, instead go to the directory below
-app.use("/images", express.static(path.join(__dirname, "public/images")))
+// app.use("/images", express.static(path.join(__dirname, "public/images")))
 app.use(express.static(path.join(__dirname, "client", "build")))
 
 
@@ -51,6 +51,7 @@ const upload = multer({
       s3: s3,
       bucket: 'kizbook-imgs',
       key: function (req, file, cb) {
+        console.log(file),
           cb(null, req.body.name); //use Date.now() for unique file keys
       },
   })
@@ -58,7 +59,6 @@ const upload = multer({
 
 
 app.post("/api/upload", upload.array("file"), (req, res)=>{
-
   try{
     return res.status(200).json("File uploaded successfully.")
   }catch(err){
