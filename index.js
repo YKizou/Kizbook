@@ -44,6 +44,18 @@ app.use(express.static(path.join(__dirname, "client", "build")))
 //middleware
 app.use(express.json());
 app.use(helmet());
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      "default-src": ["'self'"],
+      "connect-src": ["'self'", "'unsafe-inline'"],
+      "img-src": ["'self'", "data:"],
+      "style-src-elem": ["'self'", "data:"],
+      "script-src": ["'unsafe-inline'", "'self'"],
+      "object-src": ["'none'"],
+    },
+  })
+);
 app.use(bodyParser.json());
 app.use(morgan("common"));
 
