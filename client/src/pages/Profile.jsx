@@ -47,7 +47,7 @@ const Profile = () => {
           </div>
         </div>
         <div className="profileRightBottom flex">
-          <ProfileFeed />
+          <ProfileFeed/>
           {/* <Feed /> */}
           <RightbarProfile user={user} />
         </div>
