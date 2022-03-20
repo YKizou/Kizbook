@@ -11,10 +11,16 @@ const aws = require('aws-sdk');
 const multerS3 = require('multer-s3');
 const bodyParser = require('body-parser')
 
+dotenv.config();
+
+app.use(cors({
+  origin: '/'
+}));
+
 aws.config.update({
-  secretAccessKey: SECRETACCESSKEY,
-  accessKeyId: ACCESSKEYID,
-  region: REGION
+  secretAccessKey: process.env.SECRETACCESSKEY,
+  accessKeyId: process.env.ACCESSKEYID,
+  region: process.env.REGION
 });
 
 s3 = new aws.S3();
@@ -25,11 +31,6 @@ const postRoute = require("./routes/posts")
 
 const port = process.env.PORT || 8800
 
-app.use(cors({
-  origin: '/'
-}));
-
-dotenv.config();
 
 mongoose.connect(process.env.MONGO_URL, () =>{
    console.log("connected to MongoDB")
